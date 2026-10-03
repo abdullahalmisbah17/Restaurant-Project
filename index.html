@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Restaurant Project</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="/src/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="w-full border-b border-gray-200 bg-white">
+      <div
+        class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+      >
+        <!-- Logo -->
+        <a href="/" class="flex items-center">
+          <img
+            src="/src/assets/images/logo.png"
+            alt="Restaurant Logo"
+            class="h-12 w-auto object-contain"
+          />
+        </a>
+
+        <!-- Right Side -->
+        <nav class="flex items-center gap-2 sm:gap-4">
+          <!-- Home -->
+          <a
+            href="#home"
+            class="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition duration-200 hover:bg-[#D99400]/10 hover:text-[#D99400]"
+          >
+            Home
+          </a>
+
+          <!-- Dashboard -->
+          <a
+            href="dashboard.html"
+            class="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition duration-200 hover:bg-[#D99400]/10 hover:text-[#D99400]"
+          >
+            Dashboard
+          </a>
+
+          <!-- Cart -->
+          <button
+            type="button"
+            class="relative cart-toggler flex size-11 cursor-pointer items-center justify-center rounded-lg bg-[#F0A500] text-white transition-colors hover:bg-[#d99400]"
+            aria-label="Shopping Cart"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="8" cy="21" r="1"></circle>
+              <circle cx="19" cy="21" r="1"></circle>
+              <path
+                d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h8.78a2 2 0 0 0 1.95-1.57L21 8H5.12"
+              ></path>
+            </svg>
+
+            <!-- Cart Count -->
+            <span
+              id="cart_total_count"
+              class="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-gray-900 text-[10px] font-bold text-white"
+            >
+              0
+            </span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- cart section -->
+
+    <div
+      id="cart_section"
+      class="bg-gray-300 hidden fixed top-0 left-0 w-full h-screen z-99"
+    >
+      <button
+        class="absolute cart-toggler top-2 right-4 cursor-pointer z-99 text-3xl"
+      >
+        X
+      </button>
+
+      <div
+        class="mx-auto mt-[50px] max-w-4xl rounded-xl border border-gray-200 bg-white"
+      >
+        <!-- Header -->
+        <div class="border-b border-gray-200 px-5 py-4">
+          <h2 class="text-lg font-semibold text-gray-900">Order Cart</h2>
+        </div>
+
+        <!-- Cart Items -->
+        <div
+          id="cart_container"
+          class="divide-y h-[60vh] overflow-y-scroll divide-gray-100"
+        ></div>
+
+        <!-- Footer -->
+        <div
+          class="flex items-center justify-end gap-8 border-t border-gray-200 bg-gray-50 px-5 py-4"
+        >
+          <span class="text-sm font-medium text-gray-600"> Subtotal </span>
+
+          <span id="sub_total" class="text-xl font-semibold text-gray-900">
+            $90.00
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="relative flex min-h-[500px] items-center justify-center overflow-hidden bg-cover bg-center"
+      style="
+        background-image: url(&quot;/src/assets/images/banner-bg.png&quot;);
+      "
+    >
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-black/60"></div>
+
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 mx-auto max-w-3xl px-4 text-center text-white sm:px-6"
+      >
+        <!-- Small Text -->
+        <p
+          class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#D99400] sm:text-base"
+        >
+          Welcome to Our Restaurant
+        </p>
+
+        <!-- Heading -->
+        <h1 class="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+          Delicious Food,
+          <span class="text-[#D99400]">Made With Love</span>
+        </h1>
+
+        <!-- Description -->
+        <p
+          class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-gray-200 sm:text-base"
+        >
+          Enjoy fresh, delicious and flavorful meals made with quality
+          ingredients. Choose your favorite food and order it easily.
+        </p>
+
+        <!-- Button -->
+        <div class="mt-8">
+          <a
+            href="create-product.html"
+            class="inline-flex items-center justify-center rounded-xl bg-[#D99400] px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition duration-300 hover:bg-[#b97d00] hover:-translate-y-0.5"
+          >
+            Order Now
+
+            <!-- Arrow Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="ml-2 h-5 w-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="products" class="bg-gray-50 py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <!-- Section Heading -->
+        <div class="mx-auto mb-12 max-w-3xl text-center">
+          <p
+            class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-[#D99400]"
+          >
+            Our Menu
+          </p>
+
+          <h2 class="text-4xl font-bold text-slate-900 sm:text-5xl">
+            Choose Your Favorite Food
+          </h2>
+
+          <p class="mt-5 text-base leading-7 text-slate-500 sm:text-lg">
+            Freshly prepared food made with quality ingredients. Pick your
+            favorite item and add it to your cart.
+          </p>
+        </div>
+
+        <!-- Product Grid -->
+        <div
+          id="product_grid"
+          class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-white">
+      <!-- Main Footer -->
+      <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Restaurant Info -->
+          <div>
+            <a href="/" class="inline-block">
+              <img
+                src="/src/assets/images/logo.png"
+                alt="Restaurant Logo"
+                class="h-14 w-auto object-contain"
+              />
+            </a>
+
+            <p class="mt-5 max-w-sm text-sm leading-7 text-slate-400">
+              Enjoy delicious and freshly prepared food made with quality
+              ingredients. Order your favorite meal with ease.
+            </p>
+
+            <!-- Social Icons -->
+            <div class="mt-6 flex items-center gap-3">
+              <!-- Facebook -->
+              <a
+                href="#"
+                aria-label="Facebook"
+                class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition duration-300 hover:border-[#D99400] hover:bg-[#D99400] hover:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5"
+                >
+                  <path
+                    d="M14 8h3V5h-3c-2.8 0-5 2.2-5 5v2H6v3h3v6h3v-6h3l1-3h-4v-2c0-1.1.9-2 2-2Z"
+                  />
+                </svg>
+              </a>
+
+              <!-- Instagram -->
+              <a
+                href="#"
+                aria-label="Instagram"
+                class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition duration-300 hover:border-[#D99400] hover:bg-[#D99400] hover:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.8"
+                  stroke="currentColor"
+                  class="h-5 w-5"
+                >
+                  <rect width="18" height="18" x="3" y="3" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" />
+                </svg>
+              </a>
+
+              <!-- Twitter / X -->
+              <a
+                href="#"
+                aria-label="Twitter"
+                class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition duration-300 hover:border-[#D99400] hover:bg-[#D99400] hover:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5"
+                >
+                  <path
+                    d="M18.9 2H22l-6.77 7.74L23.2 22h-6.24l-4.89-6.39L6.48 22H3.37l7.24-8.28L2.8 2h6.4l4.42 5.84L18.9 2Zm-1.1 17.86h1.73L8.25 4.03H6.4L17.8 19.86Z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-lg font-semibold">Quick Links</h3>
+
+            <div class="mt-5 h-1 w-10 rounded-full bg-[#D99400]"></div>
+
+            <ul class="mt-5 space-y-3">
+              <li>
+                <a
+                  href="#home"
+                  class="text-sm text-slate-400 transition hover:text-[#D99400]"
+                >
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#products"
+                  class="text-sm text-slate-400 transition hover:text-[#D99400]"
+                >
+                  Our Menu
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#dashboard"
+                  class="text-sm text-slate-400 transition hover:text-[#D99400]"
+                >
+                  Dashboard
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#cart"
+                  class="text-sm text-slate-400 transition hover:text-[#D99400]"
+                >
+                  My Cart
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3 class="text-lg font-semibold">Contact Us</h3>
+
+            <div class="mt-5 h-1 w-10 rounded-full bg-[#D99400]"></div>
+
+            <ul class="mt-5 space-y-4">
+              <!-- Address -->
+              <li class="flex gap-3">
+                <span class="mt-0.5 text-[#D99400]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="h-5 w-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 10.5-7.5 10.5S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                    />
+                  </svg>
+                </span>
+
+                <span class="text-sm leading-6 text-slate-400">
+                  123 Main Street,<br />
+                  Dhaka, Bangladesh
+                </span>
+              </li>
+
+              <!-- Phone -->
+              <li class="flex items-center gap-3">
+                <span class="text-[#D99400]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="h-5 w-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.092l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.293a.75.75 0 0 1-.9.193 12.035 12.035 0 0 1-6.75-6.75.75.75 0 0 1 .193-.9l1.293-.97c.36-.27.52-.73.417-1.173L7.478 3.317A1.125 1.125 0 0 0 6.386 2.465H5.014a2.25 2.25 0 0 0-2.25 2.25v2.035Z"
+                    />
+                  </svg>
+                </span>
+
+                <span class="text-sm text-slate-400"> +880 1234-567890 </span>
+              </li>
+
+              <!-- Email -->
+              <li class="flex items-center gap-3">
+                <span class="text-[#D99400]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="h-5 w-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25H4.5a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.92l-7.5 4.615a2.25 2.25 0 0 1-2.36 0l-7.5-4.614a2.25 2.25 0 0 1-1.07-1.92V6.75"
+                    />
+                  </svg>
+                </span>
+
+                <span class="text-sm text-slate-400">
+                  info@restaurant.com
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Opening Hours -->
+          <div>
+            <h3 class="text-lg font-semibold">Opening Hours</h3>
+
+            <div class="mt-5 h-1 w-10 rounded-full bg-[#D99400]"></div>
+
+            <div class="mt-5 space-y-4">
+              <div class="flex items-center justify-between gap-4">
+                <span class="text-sm text-slate-400"> Monday - Friday </span>
+
+                <span class="text-sm font-medium text-white">
+                  10:00 AM - 10:00 PM
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between gap-4">
+                <span class="text-sm text-slate-400"> Saturday </span>
+
+                <span class="text-sm font-medium text-white">
+                  10:00 AM - 11:00 PM
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between gap-4">
+                <span class="text-sm text-slate-400"> Sunday </span>
+
+                <span class="text-sm font-medium text-white">
+                  12:00 PM - 10:00 PM
+                </span>
+              </div>
+            </div>
+
+            <!-- Order Button -->
+            <a
+              href="create-product.html"
+              class="mt-6 inline-flex items-center rounded-xl bg-[#D99400] px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-[#b97d00]"
+            >
+              Order Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-slate-800">
+        <div
+          class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-center sm:px-6 md:flex-row lg:px-8 md:text-left"
+        >
+          <p class="text-sm text-slate-500">
+            © 2026 Restaurant. All rights reserved.
+          </p>
+
+          <p class="text-sm text-slate-500">
+            Made with
+            <span class="font-semibold text-[#D99400]"> ❤️ </span>
+            for food lovers.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
