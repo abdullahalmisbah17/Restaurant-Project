@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import type { IProduct } from "./product.type";
 import Toastify from 'toastify-js'
 
